@@ -1,43 +1,1092 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Sifat Alam Tonmoy | AI Professional & Portfolio</title>
+    <meta name="description" content="Portfolio of Md Sifat Alam Tonmoy — AI professional, prompt engineering specialist, and researcher with 15+ verified credentials from Google, Johns Hopkins, Duke, and Lund University.">
+    <meta property="og:title" content="Md Sifat Alam Tonmoy | AI Professional & Portfolio">
+    <meta property="og:description" content="AI professional, prompt engineering specialist, and multidisciplinary researcher with 15+ verified global credentials.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#030712">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2338bdf8'/%3E%3Cstop offset='100%25' stop-color='%23818cf8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='22' fill='%23030712'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='url(%23g)' font-family='Arial, sans-serif' font-weight='800'%3ES%3C/text%3E%3C/svg%3E">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-deep: #030712;
+            --surface: rgba(17, 24, 39, 0.7);
+            --surface-hover: rgba(31, 41, 55, 0.85);
+            --border: rgba(55, 65, 81, 0.5);
+            --primary: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.4);
+            --accent: #818cf8;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --success: #34d399;
+            --warning: #fbbf24;
+        }
 
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+        /* Interactive Canvas Background (Ocean Wave & Rain / Dynamic Particles) */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+        /* Floating Navigation */
+        nav {
+            position: fixed;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 99px;
+            padding: 0.75rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
 
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hire-badge-nav {
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .hire-badge-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        header.hero {
+            padding: 12rem 0 6rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .live-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(52, 211, 153, 0.1);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            color: var(--success);
+            padding: 0.4rem 1rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: pulse-glow 2s infinite;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(52, 211, 153, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+        }
+
+        header.hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        header.hero h1 span {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header.hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+            line-height: 1.6;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0284c7, #4f46e5);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(56, 189, 248, 0.6);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 0.9rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-hover);
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* About / Intro Section */
+        .section-padding {
+            padding: 6rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media(max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .about-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--primary);
+        }
+
+        .about-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .highlights-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .highlight-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .highlight-item i {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .highlight-item span.title {
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .highlight-item span.desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Interest & Skills Matrix */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.1);
+        }
+
+        .skill-box:hover::before {
+            opacity: 1;
+        }
+
+        .skill-box i {
+            font-size: 2.25rem;
+            color: var(--primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .skill-box h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Certificates Section */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 0.6rem 1.25rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: var(--bg-deep);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.75rem;
+        }
+
+        .cert-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(16px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+
+        .cert-card.specialization {
+            border-color: rgba(251, 191, 36, 0.4);
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.8), rgba(69, 45, 12, 0.3));
+        }
+
+        .cert-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+            border-color: var(--primary);
+        }
+
+        .cert-card.specialization:hover {
+            border-color: var(--warning);
+        }
+
+        .issuer-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .cert-card.specialization .issuer-tag {
+            color: var(--warning);
+        }
+
+        .cert-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .cert-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .verify-btn {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .verify-btn:hover {
+            background: var(--primary);
+            color: var(--bg-deep);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .cert-card.specialization .verify-btn {
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--warning);
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        .cert-card.specialization .verify-btn:hover {
+            background: var(--warning);
+            color: var(--bg-deep);
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
+        }
+
+        /* Call To Action / Hire Banner */
+        .hire-banner {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(79, 70, 229, 0.15));
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hire-banner h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hire-banner p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mobile nav toggle */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: calc(100% + 0.75rem);
+                left: 0;
+                right: 0;
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(16px);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.25rem 1.5rem;
+                gap: 1rem;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .hire-badge-nav {
+                display: none;
+            }
+
+            header.hero {
+                padding-top: 10rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Interactive Canvas (Ocean Wave / Grass & Rain Background) -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-logo">
+            <i class="fa-solid fa-brain"></i> Md Sifat Alam Tonmoy
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#interests">Interests</a></li>
+            <li><a href="#certificates">Certifications (15)</a></li>
+        </ul>
+        <a href="#hire" class="hire-badge-nav"><i class="fa-solid fa-bolt"></i> Hire Me</a>
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Hero Header -->
+    <header class="hero container">
+        <div class="live-status">
+            <span class="status-dot"></span> Available for AI & Tech Projects
+        </div>
+        <h1>Architecting Intelligence & <span>Future Tech</span></h1>
+        <p>Passionate AI professional, prompt engineering specialist, and multidisciplinary researcher holding 15+ verified global credentials from top institutions including Google, Johns Hopkins, Duke, and Lund University.</p>
+        <div class="hero-cta">
+            <a href="#certificates" class="btn-primary">
+                <i class="fa-solid fa-certificate"></i> Explore 15 Verified Certs
+            </a>
+            <a href="#hire" class="btn-secondary">
+                <i class="fa-solid fa-paper-plane"></i> Get in Touch
+            </a>
+        </div>
+    </header>
+
+    <!-- About & Profile Highlights Section -->
+    <section id="about" class="container section-padding">
+        <div class="section-title">
+            <h2>Professional Profile</h2>
+            <p>Driven by curiosity, academic rigor, and practical AI application</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-card">
+                <h3>Who I Am?</h3>
+                <p>Hello! I am Md Sifat Alam Tonmoy, a dynamic learner and tech enthusiast dedicated to mastering cutting-edge artificial intelligence, prompt architecture, cross-border business communication, and research methodologies.</p>
+                <p>With an exceptional track record of completing elite global certification programs, I bridge the gap between complex machine learning paradigms and real-world efficiency.</p>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <div style="background: rgba(56, 189, 248, 0.1); padding: 0.75rem 1.25rem; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.3);">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">15+</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">Global Certifications</div>
+                    </div>
+                    <div style="background: rgba(129, 140, 248, 0.1); padding: 0.75rem 1.25rem; border-radius: 12px; border: 1px solid rgba(129, 140, 248, 0.3);">
+                        <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent);">C2</div>
+                        <div style="font-size: 0.8rem; color: var(--text-muted);">EF SET Proficient English</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-card">
+                <h3>Core Competencies</h3>
+                <p>My expertise spans across several domains designed to elevate modern workflows and software systems:</p>
+                <div class="highlights-list">
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span class="title">Generative AI & RAG</span>
+                        <span class="desc">Prompt Crafting, Symbolic Reasoning, Vector DB Integration</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <span class="title">Supply Chain & Logistics</span>
+                        <span class="desc">International Trade & Operations Optimization</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-comments"></i>
+                        <span class="title">Management Communication</span>
+                        <span class="desc">Cross-Cultural Leadership & Strategy</span>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="title">Global Fluency</span>
+                        <span class="desc">C2 Proficient English (EF SET 76/100)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container section-padding">
+        <div class="section-title">
+            <h2>Featured Projects</h2>
+            <p>A selection of applied AI and research work — replace with your own case studies</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-box">
+                <i class="fa-solid fa-robot"></i>
+                <h4>RAG-Powered Research Assistant</h4>
+                <p>A retrieval-augmented generation pipeline for querying document sets with source-grounded answers. Add your stack, results, and a link to the repo or demo here.</p>
+                <a href="#" class="verify-btn" style="margin-top:1rem;">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            <div class="skill-box">
+                <i class="fa-solid fa-diagram-project"></i>
+                <h4>Prompt Engineering Toolkit</h4>
+                <p>A reusable set of prompt templates and evaluation scripts for consistent LLM outputs. Swap in your own project name, description, and link.</p>
+                <a href="#" class="verify-btn" style="margin-top:1rem;">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+            <div class="skill-box">
+                <i class="fa-solid fa-chart-simple"></i>
+                <h4>Supply Chain Analytics Dashboard</h4>
+                <p>A logistics data dashboard surfacing cross-border trade trends and cost-optimization opportunities. Replace with your actual project details.</p>
+                <a href="#" class="verify-btn" style="margin-top:1rem;">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interests Section -->
+    <section id="interests" class="container section-padding">
+        <div class="section-title">
+            <h2>Areas of Interest & Focus</h2>
+            <p>What fuels my continuous pursuit of knowledge and innovation</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-box">
+                <i class="fa-solid fa-microchip"></i>
+                <h4>Artificial Intelligence & LLMs</h4>
+                <p>Exploring Retrieval-Augmented Generation (RAG), responsible AI usage, prompt engineering dynamics, and autonomous agent workflows.</p>
+            </div>
+            <div class="skill-box">
+                <i class="fa-solid fa-network-wired"></i>
+                <h4>Supply Chain & FinTech</h4>
+                <p>Analyzing global logistics networks, cross-border capital transfer methods, and decentralized financial technologies.</p>
+            </div>
+            <div class="skill-box">
+                <i class="fa-solid fa-book-open-reader"></i>
+                <h4>Advanced Research Methodology</h4>
+                <p>Rigorous academic investigation, data-backed synthesis, and qualitative analysis standards from University of London and SOAS.</p>
+            </div>
+            <div class="skill-box">
+                <i class="fa-solid fa-bullhorn"></i>
+                <h4>Idea Communication & TED-Ed</h4>
+                <p>Developing compelling narratives, public speaking frameworks, and community-driven knowledge dissemination.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certificates" class="container section-padding">
+        <div class="section-title">
+            <h2>Verified Credentials Portfolio</h2>
+            <p>All certifications authenticated with official verification links</p>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-btn active" onclick="filterCerts('all', this)">All Credentials (15)</button>
+            <button class="filter-btn" onclick="filterCerts('google', this)">Google AI & Cloud</button>
+            <button class="filter-btn" onclick="filterCerts('university', this)">Top Universities</button>
+            <button class="filter-btn" onclick="filterCerts('languages', this)">Language & Leadership</button>
+        </div>
+
+        <div class="cert-grid" id="cert-grid-container">
+
+            <!-- 1. Google AI Essentials Specialization -->
+            <div class="cert-card specialization" data-category="google">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-award"></i> Google Specialization</div>
+                    <div class="cert-title">Google AI Essentials (5 Courses Program)</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 22, 2026</span>
+                    <a href="https://coursera.org/verify/specialization/YR1ZXZPGH9HD" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 2. EF SET English Certificate -->
+            <div class="cert-card" data-category="languages">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-language"></i> EF SET</div>
+                    <div class="cert-title">English Certificate - C2 Proficient (76/100)</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 16, 2026</span>
+                    <a href="https://cert.efset.org/xTmWvi" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 3. TED-Ed Idea Workshop -->
+            <div class="cert-card" data-category="languages">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-microphone-lines"></i> TED-Ed</div>
+                    <div class="cert-title">Idea Workshop: Educator Talks & Community Sharing</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-solid fa-circle-check" style="color:var(--success);"></i> Completed</span>
+                    <span style="font-size:0.8rem; color:var(--text-muted);">Global Workshop</span>
+                </div>
+            </div>
+
+            <!-- 4. Google Use AI Responsibly -->
+            <div class="cert-card" data-category="google">
+                <div>
+                    <div class="issuer-tag"><i class="fa-brands fa-google"></i> Google</div>
+                    <div class="cert-title">Use AI Responsibly</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 22, 2026</span>
+                    <a href="https://coursera.org/verify/TLBXRQOSQGEF" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 5. Google Stay Ahead of the AI Curve -->
+            <div class="cert-card" data-category="google">
+                <div>
+                    <div class="issuer-tag"><i class="fa-brands fa-google"></i> Google</div>
+                    <div class="cert-title">Stay Ahead of the AI Curve</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 22, 2026</span>
+                    <a href="https://coursera.org/verify/UZKZ3986FGHI" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 6. Johns Hopkins -->
+            <div class="cert-card" data-category="university">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-graduation-cap"></i> Johns Hopkins University</div>
+                    <div class="cert-title">Generative AI and Symbolic Reasoning</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 23, 2026</span>
+                    <a href="https://coursera.org/verify/0J2BPNXKYDA9" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 7. Google Discover Art of Prompting -->
+            <div class="cert-card" data-category="google">
+                <div>
+                    <div class="issuer-tag"><i class="fa-brands fa-google"></i> Google</div>
+                    <div class="cert-title">Discover the Art of Prompting</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 22, 2026</span>
+                    <a href="https://coursera.org/verify/3OKK45125TS7" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 8. University of Colorado Boulder -->
+            <div class="cert-card" data-category="university">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-graduation-cap"></i> University of Colorado Boulder</div>
+                    <div class="cert-title">International Supply Chains and Logistics</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 22, 2026</span>
+                    <a href="https://coursera.org/verify/721ZHQ08J4JS" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 9. Peking University -->
+            <div class="cert-card" data-category="university">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-graduation-cap"></i> Peking University</div>
+                    <div class="cert-title">Management Communication (管理沟通)</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 23, 2026</span>
+                    <a href="https://coursera.org/verify/C94YVPUH1S3X" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 10. Google AI Fundamentals -->
+            <div class="cert-card" data-category="google">
+                <div>
+                    <div class="issuer-tag"><i class="fa-brands fa-google"></i> Google</div>
+                    <div class="cert-title">AI Fundamentals</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 22, 2026</span>
+                    <a href="https://coursera.org/verify/CF0J46A8XZDI" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 11. Duke University RAG -->
+            <div class="cert-card" data-category="university">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-graduation-cap"></i> Duke University</div>
+                    <div class="cert-title">Introduction to Retrieval Augmented Generation (RAG)</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 23, 2026</span>
+                    <a href="https://coursera.org/verify/CQWHC107S0RG" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 12. Google Maximize Productivity -->
+            <div class="cert-card" data-category="google">
+                <div>
+                    <div class="issuer-tag"><i class="fa-brands fa-google"></i> Google</div>
+                    <div class="cert-title">Maximize Productivity With AI Tools</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 22, 2026</span>
+                    <a href="https://coursera.org/verify/DITQCSZ76V2W" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 13. Coursera WordPress -->
+            <div class="cert-card" data-category="university">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-globe"></i> Coursera Project</div>
+                    <div class="cert-title">Build a Free Website with WordPress</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 21, 2026</span>
+                    <a href="https://coursera.org/verify/J2UC4K4V6KKF" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 14. Lund University -->
+            <div class="cert-card" data-category="university">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-graduation-cap"></i> Lund University</div>
+                    <div class="cert-title">AI, Business & the Future of Work</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 23, 2026</span>
+                    <a href="https://coursera.org/verify/J9DA8J7UQVGZ" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+            <!-- 15. University of London & SOAS -->
+            <div class="cert-card" data-category="university">
+                <div>
+                    <div class="issuer-tag"><i class="fa-solid fa-graduation-cap"></i> University of London & SOAS</div>
+                    <div class="cert-title">Understanding Research Methods</div>
+                </div>
+                <div class="cert-footer">
+                    <span class="cert-date"><i class="fa-regular fa-calendar"></i> Jul 22, 2026</span>
+                    <a href="https://coursera.org/verify/KUFD5RAC97HY" target="_blank" class="verify-btn">Verify <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Hire Banner (Prepared for future contact integration) -->
+    <section id="hire" class="container">
+        <div class="hire-banner">
+            <h2>Ready to Build Something Incredible Together?</h2>
+            <p>Whether you need an AI prompt specialist, research collaborator, or tech professional for your next project, my credentials and skills speak for themselves.</p>
+            <div style="display:flex; gap:1rem; justify-content:center; margin-bottom: 2rem; flex-wrap: wrap;">
+                <!-- TODO: replace # with your real profile URLs -->
+                <a href="#" target="_blank" rel="noopener" class="btn-secondary" style="padding:0.7rem 1rem;" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="btn-secondary" style="padding:0.7rem 1rem;" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="btn-secondary" style="padding:0.7rem 1rem;" aria-label="Kaggle"><i class="fa-brands fa-kaggle"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="btn-secondary" style="padding:0.7rem 1rem;" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            <a href="mailto:query.sifat@gmail.com" class="btn-primary">
+                <i class="fa-solid fa-envelope"></i> Contact Me Directly
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Md Sifat Alam Tonmoy. Designed for GitHub Pages Deployment.</p>
+            <p>Empowering global clients through verified AI expertise and dynamic web experiences.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Background Script (Ocean Waves, Rain / Particle Motion) -->
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+        let waves = [];
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Initialize Particles (Simulating gentle rain / floating sparks)
+        for(let i = 0; i < 50; i++) {
+            particles.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                length: Math.random() * 20 + 10,
+                speed: Math.random() * 3 + 2,
+                opacity: Math.random() * 0.3 + 0.1
+            });
+        }
+
+        // Wave parameters
+        const waveCount = 3;
+        for(let i = 0; i < waveCount; i++) {
+            waves.push({
+                yOffset: height * (0.6 + i * 0.15),
+                length: 0.008 + i * 0.003,
+                amplitude: 40 + i * 20,
+                speed: 0.01 + i * 0.005,
+                color: i === 0 ? 'rgba(56, 189, 248, 0.07)' : (i === 1 ? 'rgba(129, 140, 248, 0.05)' : 'rgba(192, 132, 252, 0.03)')
+            });
+        }
+
+        let time = 0;
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            // Draw Rain / Floating particles
+            ctx.lineWidth = 1;
+            particles.forEach(p => {
+                ctx.strokeStyle = `rgba(56, 189, 248, ${p.opacity})`;
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(p.x - 2, p.y + p.length);
+                ctx.stroke();
+
+                p.y += p.speed;
+                p.x -= 0.5;
+
+                if(p.y > height) {
+                    p.y = -20;
+                    p.x = Math.random() * width;
+                }
+            });
+
+            // Draw Ocean Waves
+            waves.forEach(wave => {
+                ctx.fillStyle = wave.color;
+                ctx.beginPath();
+                ctx.moveTo(0, height);
+                for(let x = 0; x < width; x += 10) {
+                    let y = wave.yOffset + Math.sin(x * wave.length + time * wave.speed) * wave.amplitude;
+                    ctx.lineTo(x, y);
+                }
+                ctx.lineTo(width, height);
+                ctx.closePath();
+                ctx.fill();
+            });
+
+            time += 0.05;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        // Simple Certificate Filter Function
+        function filterCerts(category, btnEl) {
+            const cards = document.querySelectorAll('.cert-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+
+            cards.forEach(card => {
+                if(category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Mobile Nav Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        navToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+                  </html>
